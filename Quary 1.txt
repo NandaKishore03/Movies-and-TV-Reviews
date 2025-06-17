@@ -1,0 +1,10 @@
+SELECT
+  item_id,
+  COUNT(*) AS total_reviews
+FROM
+  movies_tv_reviews_csv
+GROUP BY
+  item_id
+ORDER BY
+  total_reviews DESC
+LIMIT 10;

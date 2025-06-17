@@ -1,0 +1,13 @@
+-- Main summary statistics query
+SELECT
+    COUNT(*) AS total_reviews,
+    COUNT(DISTINCT user_id) AS unique_users,
+    COUNT(DISTINCT item_id) AS unique_items,
+    ROUND(AVG(rating), 2) AS avg_rating,
+    ROUND(STDDEV(rating), 2) AS rating_stddev,
+    MIN(rating) AS min_rating,
+    MAX(rating) AS max_rating,
+    ROUND(AVG(LENGTH(review_text)), 2) AS avg_review_length,
+    FROM_UNIXTIME(MIN(CAST(timestamp AS BIGINT))) AS earliest_review,
+    FROM_UNIXTIME(MAX(CAST(timestamp AS BIGINT))) AS latest_review
+FROM movies_tv_reviews_csv;

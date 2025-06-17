@@ -1,0 +1,18 @@
+CREATE EXTERNAL TABLE IF NOT EXISTS movies_tv_reviews_csv (
+    item_id STRING,           -- Product ID (ASIN)
+    user_id STRING,           -- Reviewer ID
+    rating INT,               -- Star rating (e.g., 1 to 5)
+    `timestamp` BIGINT,       -- Unix timestamp of the review (escaped keyword)
+    review_text STRING,       -- Full review body
+    summary STRING            -- Review headline/summary
+)
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+WITH SERDEPROPERTIES (
+    "separatorChar" = ",",
+    "quoteChar" = "\"",
+    "escapeChar" = "\\"
+)
+STORED AS TEXTFILE
+LOCATION 'gs://nk009/Movies_and_TV.csv/'
+TBLPROPERTIES ("skip.header.line.count"="1");
+

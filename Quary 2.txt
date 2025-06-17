@@ -1,0 +1,11 @@
+-- Top 10 most‑active reviewers
+SELECT
+    user_id,
+    COUNT(*) AS review_count
+FROM
+    movies_tv_reviews_csv
+GROUP BY
+    user_id
+ORDER BY
+    review_count DESC
+LIMIT 10;
